@@ -1,3 +1,14 @@
+
+% ------------------------------------------------
+%
+% The Geometric Algebra Fulcrum (GA-FuL) MATLAB Toolbox
+% 
+% Copyright (c) 2023 Ahmad Hosny Eid
+%
+% MIT License
+%
+% ------------------------------------------------
+
 function outMv = fdpKv8Kv6Kv2(inMv1, inMv2)
     arguments
         inMv1 (1,:) double

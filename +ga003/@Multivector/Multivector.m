@@ -1,3 +1,14 @@
+
+% ------------------------------------------------
+%
+% The Geometric Algebra Fulcrum (GA-FuL) MATLAB Toolbox
+% 
+% Copyright (c) 2023 Ahmad Hosny Eid
+%
+% MIT License
+%
+% ------------------------------------------------
+
 classdef Multivector
     properties
         Grade (1,1) int32,

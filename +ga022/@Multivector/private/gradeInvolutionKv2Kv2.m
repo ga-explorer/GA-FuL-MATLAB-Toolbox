@@ -1,3 +1,14 @@
+
+% ------------------------------------------------
+%
+% The Geometric Algebra Fulcrum (GA-FuL) MATLAB Toolbox
+% 
+% Copyright (c) 2023 Ahmad Hosny Eid
+%
+% MIT License
+%
+% ------------------------------------------------
+
 function outMv = gradeInvolutionKv2Kv2(inMv)
     arguments
         inMv (6,:) double
