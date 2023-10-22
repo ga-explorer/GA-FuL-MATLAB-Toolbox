@@ -1,0 +1,113 @@
+function outMv = gpKv1Kv5Mv(inMv1, inMv2)
+    arguments
+        inMv1 (8,:) double
+        inMv2 (56,:) double
+    end
+    
+    sampleCount = size(inMv1, 2);
+    
+    if (size(inMv2, 2) ~= sampleCount)
+        error('Number of columns in both inputs must match');
+    end
+    
+    outMv = zeros([256, sampleCount], 'double');
+    
+    outMv(94,:) = inMv1(5,:) .* inMv2(1,:) + inMv1(6,:) .* inMv2(2,:) + inMv1(7,:) .* inMv2(7,:) + inMv1(8,:) .* inMv2(22,:);
+    outMv(95,:) = -inMv1(4,:) .* inMv2(1,:) + inMv1(6,:) .* inMv2(3,:) + inMv1(7,:) .* inMv2(8,:) + inMv1(8,:) .* inMv2(23,:);
+    outMv(96,:) = -inMv1(3,:) .* inMv2(1,:) + inMv1(6,:) .* inMv2(4,:) + inMv1(7,:) .* inMv2(9,:) + inMv1(8,:) .* inMv2(24,:);
+    outMv(97,:) = inMv1(2,:) .* inMv2(1,:) + inMv1(6,:) .* inMv2(5,:) + inMv1(7,:) .* inMv2(10,:) + inMv1(8,:) .* inMv2(25,:);
+    outMv(98,:) = -inMv1(1,:) .* inMv2(1,:) + inMv1(6,:) .* inMv2(6,:) + inMv1(7,:) .* inMv2(11,:) + inMv1(8,:) .* inMv2(26,:);
+    outMv(99,:) = -inMv1(4,:) .* inMv2(2,:) - inMv1(5,:) .* inMv2(3,:) + inMv1(7,:) .* inMv2(12,:) + inMv1(8,:) .* inMv2(27,:);
+    outMv(100,:) = -inMv1(3,:) .* inMv2(2,:) - inMv1(5,:) .* inMv2(4,:) + inMv1(7,:) .* inMv2(13,:) + inMv1(8,:) .* inMv2(28,:);
+    outMv(101,:) = inMv1(2,:) .* inMv2(2,:) - inMv1(5,:) .* inMv2(5,:) + inMv1(7,:) .* inMv2(14,:) + inMv1(8,:) .* inMv2(29,:);
+    outMv(102,:) = -inMv1(1,:) .* inMv2(2,:) - inMv1(5,:) .* inMv2(6,:) + inMv1(7,:) .* inMv2(15,:) + inMv1(8,:) .* inMv2(30,:);
+    outMv(103,:) = -inMv1(3,:) .* inMv2(3,:) + inMv1(4,:) .* inMv2(4,:) + inMv1(7,:) .* inMv2(16,:) + inMv1(8,:) .* inMv2(31,:);
+    outMv(104,:) = inMv1(2,:) .* inMv2(3,:) + inMv1(4,:) .* inMv2(5,:) + inMv1(7,:) .* inMv2(17,:) + inMv1(8,:) .* inMv2(32,:);
+    outMv(105,:) = -inMv1(1,:) .* inMv2(3,:) + inMv1(4,:) .* inMv2(6,:) + inMv1(7,:) .* inMv2(18,:) + inMv1(8,:) .* inMv2(33,:);
+    outMv(106,:) = inMv1(2,:) .* inMv2(4,:) + inMv1(3,:) .* inMv2(5,:) + inMv1(7,:) .* inMv2(19,:) + inMv1(8,:) .* inMv2(34,:);
+    outMv(107,:) = -inMv1(1,:) .* inMv2(4,:) + inMv1(3,:) .* inMv2(6,:) + inMv1(7,:) .* inMv2(20,:) + inMv1(8,:) .* inMv2(35,:);
+    outMv(108,:) = -inMv1(1,:) .* inMv2(5,:) - inMv1(2,:) .* inMv2(6,:) + inMv1(7,:) .* inMv2(21,:) + inMv1(8,:) .* inMv2(36,:);
+    outMv(109,:) = -inMv1(4,:) .* inMv2(7,:) - inMv1(5,:) .* inMv2(8,:) - inMv1(6,:) .* inMv2(12,:) + inMv1(8,:) .* inMv2(37,:);
+    outMv(110,:) = -inMv1(3,:) .* inMv2(7,:) - inMv1(5,:) .* inMv2(9,:) - inMv1(6,:) .* inMv2(13,:) + inMv1(8,:) .* inMv2(38,:);
+    outMv(111,:) = inMv1(2,:) .* inMv2(7,:) - inMv1(5,:) .* inMv2(10,:) - inMv1(6,:) .* inMv2(14,:) + inMv1(8,:) .* inMv2(39,:);
+    outMv(112,:) = -inMv1(1,:) .* inMv2(7,:) - inMv1(5,:) .* inMv2(11,:) - inMv1(6,:) .* inMv2(15,:) + inMv1(8,:) .* inMv2(40,:);
+    outMv(113,:) = -inMv1(3,:) .* inMv2(8,:) + inMv1(4,:) .* inMv2(9,:) - inMv1(6,:) .* inMv2(16,:) + inMv1(8,:) .* inMv2(41,:);
+    outMv(114,:) = inMv1(2,:) .* inMv2(8,:) + inMv1(4,:) .* inMv2(10,:) - inMv1(6,:) .* inMv2(17,:) + inMv1(8,:) .* inMv2(42,:);
+    outMv(115,:) = -inMv1(1,:) .* inMv2(8,:) + inMv1(4,:) .* inMv2(11,:) - inMv1(6,:) .* inMv2(18,:) + inMv1(8,:) .* inMv2(43,:);
+    outMv(116,:) = inMv1(2,:) .* inMv2(9,:) + inMv1(3,:) .* inMv2(10,:) - inMv1(6,:) .* inMv2(19,:) + inMv1(8,:) .* inMv2(44,:);
+    outMv(117,:) = -inMv1(1,:) .* inMv2(9,:) + inMv1(3,:) .* inMv2(11,:) - inMv1(6,:) .* inMv2(20,:) + inMv1(8,:) .* inMv2(45,:);
+    outMv(118,:) = -inMv1(1,:) .* inMv2(10,:) - inMv1(2,:) .* inMv2(11,:) - inMv1(6,:) .* inMv2(21,:) + inMv1(8,:) .* inMv2(46,:);
+    outMv(119,:) = -inMv1(3,:) .* inMv2(12,:) + inMv1(4,:) .* inMv2(13,:) + inMv1(5,:) .* inMv2(16,:) + inMv1(8,:) .* inMv2(47,:);
+    outMv(120,:) = inMv1(2,:) .* inMv2(12,:) + inMv1(4,:) .* inMv2(14,:) + inMv1(5,:) .* inMv2(17,:) + inMv1(8,:) .* inMv2(48,:);
+    outMv(121,:) = -inMv1(1,:) .* inMv2(12,:) + inMv1(4,:) .* inMv2(15,:) + inMv1(5,:) .* inMv2(18,:) + inMv1(8,:) .* inMv2(49,:);
+    outMv(122,:) = inMv1(2,:) .* inMv2(13,:) + inMv1(3,:) .* inMv2(14,:) + inMv1(5,:) .* inMv2(19,:) + inMv1(8,:) .* inMv2(50,:);
+    outMv(123,:) = -inMv1(1,:) .* inMv2(13,:) + inMv1(3,:) .* inMv2(15,:) + inMv1(5,:) .* inMv2(20,:) + inMv1(8,:) .* inMv2(51,:);
+    outMv(124,:) = -inMv1(1,:) .* inMv2(14,:) - inMv1(2,:) .* inMv2(15,:) + inMv1(5,:) .* inMv2(21,:) + inMv1(8,:) .* inMv2(52,:);
+    outMv(125,:) = inMv1(2,:) .* inMv2(16,:) + inMv1(3,:) .* inMv2(17,:) - inMv1(4,:) .* inMv2(19,:) + inMv1(8,:) .* inMv2(53,:);
+    outMv(126,:) = -inMv1(1,:) .* inMv2(16,:) + inMv1(3,:) .* inMv2(18,:) - inMv1(4,:) .* inMv2(20,:) + inMv1(8,:) .* inMv2(54,:);
+    outMv(127,:) = -inMv1(1,:) .* inMv2(17,:) - inMv1(2,:) .* inMv2(18,:) - inMv1(4,:) .* inMv2(21,:) + inMv1(8,:) .* inMv2(55,:);
+    outMv(128,:) = -inMv1(1,:) .* inMv2(19,:) - inMv1(2,:) .* inMv2(20,:) - inMv1(3,:) .* inMv2(21,:) + inMv1(8,:) .* inMv2(56,:);
+    outMv(129,:) = -inMv1(4,:) .* inMv2(22,:) - inMv1(5,:) .* inMv2(23,:) - inMv1(6,:) .* inMv2(27,:) - inMv1(7,:) .* inMv2(37,:);
+    outMv(130,:) = -inMv1(3,:) .* inMv2(22,:) - inMv1(5,:) .* inMv2(24,:) - inMv1(6,:) .* inMv2(28,:) - inMv1(7,:) .* inMv2(38,:);
+    outMv(131,:) = inMv1(2,:) .* inMv2(22,:) - inMv1(5,:) .* inMv2(25,:) - inMv1(6,:) .* inMv2(29,:) - inMv1(7,:) .* inMv2(39,:);
+    outMv(132,:) = -inMv1(1,:) .* inMv2(22,:) - inMv1(5,:) .* inMv2(26,:) - inMv1(6,:) .* inMv2(30,:) - inMv1(7,:) .* inMv2(40,:);
+    outMv(133,:) = -inMv1(3,:) .* inMv2(23,:) + inMv1(4,:) .* inMv2(24,:) - inMv1(6,:) .* inMv2(31,:) - inMv1(7,:) .* inMv2(41,:);
+    outMv(134,:) = inMv1(2,:) .* inMv2(23,:) + inMv1(4,:) .* inMv2(25,:) - inMv1(6,:) .* inMv2(32,:) - inMv1(7,:) .* inMv2(42,:);
+    outMv(135,:) = -inMv1(1,:) .* inMv2(23,:) + inMv1(4,:) .* inMv2(26,:) - inMv1(6,:) .* inMv2(33,:) - inMv1(7,:) .* inMv2(43,:);
+    outMv(136,:) = inMv1(2,:) .* inMv2(24,:) + inMv1(3,:) .* inMv2(25,:) - inMv1(6,:) .* inMv2(34,:) - inMv1(7,:) .* inMv2(44,:);
+    outMv(137,:) = -inMv1(1,:) .* inMv2(24,:) + inMv1(3,:) .* inMv2(26,:) - inMv1(6,:) .* inMv2(35,:) - inMv1(7,:) .* inMv2(45,:);
+    outMv(138,:) = -inMv1(1,:) .* inMv2(25,:) - inMv1(2,:) .* inMv2(26,:) - inMv1(6,:) .* inMv2(36,:) - inMv1(7,:) .* inMv2(46,:);
+    outMv(139,:) = -inMv1(3,:) .* inMv2(27,:) + inMv1(4,:) .* inMv2(28,:) + inMv1(5,:) .* inMv2(31,:) - inMv1(7,:) .* inMv2(47,:);
+    outMv(140,:) = inMv1(2,:) .* inMv2(27,:) + inMv1(4,:) .* inMv2(29,:) + inMv1(5,:) .* inMv2(32,:) - inMv1(7,:) .* inMv2(48,:);
+    outMv(141,:) = -inMv1(1,:) .* inMv2(27,:) + inMv1(4,:) .* inMv2(30,:) + inMv1(5,:) .* inMv2(33,:) - inMv1(7,:) .* inMv2(49,:);
+    outMv(142,:) = inMv1(2,:) .* inMv2(28,:) + inMv1(3,:) .* inMv2(29,:) + inMv1(5,:) .* inMv2(34,:) - inMv1(7,:) .* inMv2(50,:);
+    outMv(143,:) = -inMv1(1,:) .* inMv2(28,:) + inMv1(3,:) .* inMv2(30,:) + inMv1(5,:) .* inMv2(35,:) - inMv1(7,:) .* inMv2(51,:);
+    outMv(144,:) = -inMv1(1,:) .* inMv2(29,:) - inMv1(2,:) .* inMv2(30,:) + inMv1(5,:) .* inMv2(36,:) - inMv1(7,:) .* inMv2(52,:);
+    outMv(145,:) = inMv1(2,:) .* inMv2(31,:) + inMv1(3,:) .* inMv2(32,:) - inMv1(4,:) .* inMv2(34,:) - inMv1(7,:) .* inMv2(53,:);
+    outMv(146,:) = -inMv1(1,:) .* inMv2(31,:) + inMv1(3,:) .* inMv2(33,:) - inMv1(4,:) .* inMv2(35,:) - inMv1(7,:) .* inMv2(54,:);
+    outMv(147,:) = -inMv1(1,:) .* inMv2(32,:) - inMv1(2,:) .* inMv2(33,:) - inMv1(4,:) .* inMv2(36,:) - inMv1(7,:) .* inMv2(55,:);
+    outMv(148,:) = -inMv1(1,:) .* inMv2(34,:) - inMv1(2,:) .* inMv2(35,:) - inMv1(3,:) .* inMv2(36,:) - inMv1(7,:) .* inMv2(56,:);
+    outMv(149,:) = -inMv1(3,:) .* inMv2(37,:) + inMv1(4,:) .* inMv2(38,:) + inMv1(5,:) .* inMv2(41,:) + inMv1(6,:) .* inMv2(47,:);
+    outMv(150,:) = inMv1(2,:) .* inMv2(37,:) + inMv1(4,:) .* inMv2(39,:) + inMv1(5,:) .* inMv2(42,:) + inMv1(6,:) .* inMv2(48,:);
+    outMv(151,:) = -inMv1(1,:) .* inMv2(37,:) + inMv1(4,:) .* inMv2(40,:) + inMv1(5,:) .* inMv2(43,:) + inMv1(6,:) .* inMv2(49,:);
+    outMv(152,:) = inMv1(2,:) .* inMv2(38,:) + inMv1(3,:) .* inMv2(39,:) + inMv1(5,:) .* inMv2(44,:) + inMv1(6,:) .* inMv2(50,:);
+    outMv(153,:) = -inMv1(1,:) .* inMv2(38,:) + inMv1(3,:) .* inMv2(40,:) + inMv1(5,:) .* inMv2(45,:) + inMv1(6,:) .* inMv2(51,:);
+    outMv(154,:) = -inMv1(1,:) .* inMv2(39,:) - inMv1(2,:) .* inMv2(40,:) + inMv1(5,:) .* inMv2(46,:) + inMv1(6,:) .* inMv2(52,:);
+    outMv(155,:) = inMv1(2,:) .* inMv2(41,:) + inMv1(3,:) .* inMv2(42,:) - inMv1(4,:) .* inMv2(44,:) + inMv1(6,:) .* inMv2(53,:);
+    outMv(156,:) = -inMv1(1,:) .* inMv2(41,:) + inMv1(3,:) .* inMv2(43,:) - inMv1(4,:) .* inMv2(45,:) + inMv1(6,:) .* inMv2(54,:);
+    outMv(157,:) = -inMv1(1,:) .* inMv2(42,:) - inMv1(2,:) .* inMv2(43,:) - inMv1(4,:) .* inMv2(46,:) + inMv1(6,:) .* inMv2(55,:);
+    outMv(158,:) = -inMv1(1,:) .* inMv2(44,:) - inMv1(2,:) .* inMv2(45,:) - inMv1(3,:) .* inMv2(46,:) + inMv1(6,:) .* inMv2(56,:);
+    outMv(159,:) = inMv1(2,:) .* inMv2(47,:) + inMv1(3,:) .* inMv2(48,:) - inMv1(4,:) .* inMv2(50,:) - inMv1(5,:) .* inMv2(53,:);
+    outMv(160,:) = -inMv1(1,:) .* inMv2(47,:) + inMv1(3,:) .* inMv2(49,:) - inMv1(4,:) .* inMv2(51,:) - inMv1(5,:) .* inMv2(54,:);
+    outMv(161,:) = -inMv1(1,:) .* inMv2(48,:) - inMv1(2,:) .* inMv2(49,:) - inMv1(4,:) .* inMv2(52,:) - inMv1(5,:) .* inMv2(55,:);
+    outMv(162,:) = -inMv1(1,:) .* inMv2(50,:) - inMv1(2,:) .* inMv2(51,:) - inMv1(3,:) .* inMv2(52,:) - inMv1(5,:) .* inMv2(56,:);
+    outMv(163,:) = -inMv1(1,:) .* inMv2(53,:) - inMv1(2,:) .* inMv2(54,:) - inMv1(3,:) .* inMv2(55,:) + inMv1(4,:) .* inMv2(56,:);
+    outMv(220,:) = inMv1(1,:) .* inMv2(6,:) - inMv1(2,:) .* inMv2(5,:) + inMv1(3,:) .* inMv2(4,:) - inMv1(4,:) .* inMv2(3,:) + inMv1(5,:) .* inMv2(2,:) - inMv1(6,:) .* inMv2(1,:);
+    outMv(221,:) = inMv1(1,:) .* inMv2(11,:) - inMv1(2,:) .* inMv2(10,:) + inMv1(3,:) .* inMv2(9,:) - inMv1(4,:) .* inMv2(8,:) + inMv1(5,:) .* inMv2(7,:) - inMv1(7,:) .* inMv2(1,:);
+    outMv(222,:) = inMv1(1,:) .* inMv2(15,:) - inMv1(2,:) .* inMv2(14,:) + inMv1(3,:) .* inMv2(13,:) - inMv1(4,:) .* inMv2(12,:) + inMv1(6,:) .* inMv2(7,:) - inMv1(7,:) .* inMv2(2,:);
+    outMv(223,:) = inMv1(1,:) .* inMv2(18,:) - inMv1(2,:) .* inMv2(17,:) + inMv1(3,:) .* inMv2(16,:) - inMv1(5,:) .* inMv2(12,:) + inMv1(6,:) .* inMv2(8,:) - inMv1(7,:) .* inMv2(3,:);
+    outMv(224,:) = inMv1(1,:) .* inMv2(20,:) - inMv1(2,:) .* inMv2(19,:) + inMv1(4,:) .* inMv2(16,:) - inMv1(5,:) .* inMv2(13,:) + inMv1(6,:) .* inMv2(9,:) - inMv1(7,:) .* inMv2(4,:);
+    outMv(225,:) = inMv1(1,:) .* inMv2(21,:) - inMv1(3,:) .* inMv2(19,:) + inMv1(4,:) .* inMv2(17,:) - inMv1(5,:) .* inMv2(14,:) + inMv1(6,:) .* inMv2(10,:) - inMv1(7,:) .* inMv2(5,:);
+    outMv(226,:) = inMv1(2,:) .* inMv2(21,:) - inMv1(3,:) .* inMv2(20,:) + inMv1(4,:) .* inMv2(18,:) - inMv1(5,:) .* inMv2(15,:) + inMv1(6,:) .* inMv2(11,:) - inMv1(7,:) .* inMv2(6,:);
+    outMv(227,:) = inMv1(1,:) .* inMv2(26,:) - inMv1(2,:) .* inMv2(25,:) + inMv1(3,:) .* inMv2(24,:) - inMv1(4,:) .* inMv2(23,:) + inMv1(5,:) .* inMv2(22,:) - inMv1(8,:) .* inMv2(1,:);
+    outMv(228,:) = inMv1(1,:) .* inMv2(30,:) - inMv1(2,:) .* inMv2(29,:) + inMv1(3,:) .* inMv2(28,:) - inMv1(4,:) .* inMv2(27,:) + inMv1(6,:) .* inMv2(22,:) - inMv1(8,:) .* inMv2(2,:);
+    outMv(229,:) = inMv1(1,:) .* inMv2(33,:) - inMv1(2,:) .* inMv2(32,:) + inMv1(3,:) .* inMv2(31,:) - inMv1(5,:) .* inMv2(27,:) + inMv1(6,:) .* inMv2(23,:) - inMv1(8,:) .* inMv2(3,:);
+    outMv(230,:) = inMv1(1,:) .* inMv2(35,:) - inMv1(2,:) .* inMv2(34,:) + inMv1(4,:) .* inMv2(31,:) - inMv1(5,:) .* inMv2(28,:) + inMv1(6,:) .* inMv2(24,:) - inMv1(8,:) .* inMv2(4,:);
+    outMv(231,:) = inMv1(1,:) .* inMv2(36,:) - inMv1(3,:) .* inMv2(34,:) + inMv1(4,:) .* inMv2(32,:) - inMv1(5,:) .* inMv2(29,:) + inMv1(6,:) .* inMv2(25,:) - inMv1(8,:) .* inMv2(5,:);
+    outMv(232,:) = inMv1(2,:) .* inMv2(36,:) - inMv1(3,:) .* inMv2(35,:) + inMv1(4,:) .* inMv2(33,:) - inMv1(5,:) .* inMv2(30,:) + inMv1(6,:) .* inMv2(26,:) - inMv1(8,:) .* inMv2(6,:);
+    outMv(233,:) = inMv1(1,:) .* inMv2(40,:) - inMv1(2,:) .* inMv2(39,:) + inMv1(3,:) .* inMv2(38,:) - inMv1(4,:) .* inMv2(37,:) + inMv1(7,:) .* inMv2(22,:) - inMv1(8,:) .* inMv2(7,:);
+    outMv(234,:) = inMv1(1,:) .* inMv2(43,:) - inMv1(2,:) .* inMv2(42,:) + inMv1(3,:) .* inMv2(41,:) - inMv1(5,:) .* inMv2(37,:) + inMv1(7,:) .* inMv2(23,:) - inMv1(8,:) .* inMv2(8,:);
+    outMv(235,:) = inMv1(1,:) .* inMv2(45,:) - inMv1(2,:) .* inMv2(44,:) + inMv1(4,:) .* inMv2(41,:) - inMv1(5,:) .* inMv2(38,:) + inMv1(7,:) .* inMv2(24,:) - inMv1(8,:) .* inMv2(9,:);
+    outMv(236,:) = inMv1(1,:) .* inMv2(46,:) - inMv1(3,:) .* inMv2(44,:) + inMv1(4,:) .* inMv2(42,:) - inMv1(5,:) .* inMv2(39,:) + inMv1(7,:) .* inMv2(25,:) - inMv1(8,:) .* inMv2(10,:);
+    outMv(237,:) = inMv1(2,:) .* inMv2(46,:) - inMv1(3,:) .* inMv2(45,:) + inMv1(4,:) .* inMv2(43,:) - inMv1(5,:) .* inMv2(40,:) + inMv1(7,:) .* inMv2(26,:) - inMv1(8,:) .* inMv2(11,:);
+    outMv(238,:) = inMv1(1,:) .* inMv2(49,:) - inMv1(2,:) .* inMv2(48,:) + inMv1(3,:) .* inMv2(47,:) - inMv1(6,:) .* inMv2(37,:) + inMv1(7,:) .* inMv2(27,:) - inMv1(8,:) .* inMv2(12,:);
+    outMv(239,:) = inMv1(1,:) .* inMv2(51,:) - inMv1(2,:) .* inMv2(50,:) + inMv1(4,:) .* inMv2(47,:) - inMv1(6,:) .* inMv2(38,:) + inMv1(7,:) .* inMv2(28,:) - inMv1(8,:) .* inMv2(13,:);
+    outMv(240,:) = inMv1(1,:) .* inMv2(52,:) - inMv1(3,:) .* inMv2(50,:) + inMv1(4,:) .* inMv2(48,:) - inMv1(6,:) .* inMv2(39,:) + inMv1(7,:) .* inMv2(29,:) - inMv1(8,:) .* inMv2(14,:);
+    outMv(241,:) = inMv1(2,:) .* inMv2(52,:) - inMv1(3,:) .* inMv2(51,:) + inMv1(4,:) .* inMv2(49,:) - inMv1(6,:) .* inMv2(40,:) + inMv1(7,:) .* inMv2(30,:) - inMv1(8,:) .* inMv2(15,:);
+    outMv(242,:) = inMv1(1,:) .* inMv2(54,:) - inMv1(2,:) .* inMv2(53,:) + inMv1(5,:) .* inMv2(47,:) - inMv1(6,:) .* inMv2(41,:) + inMv1(7,:) .* inMv2(31,:) - inMv1(8,:) .* inMv2(16,:);
+    outMv(243,:) = inMv1(1,:) .* inMv2(55,:) - inMv1(3,:) .* inMv2(53,:) + inMv1(5,:) .* inMv2(48,:) - inMv1(6,:) .* inMv2(42,:) + inMv1(7,:) .* inMv2(32,:) - inMv1(8,:) .* inMv2(17,:);
+    outMv(244,:) = inMv1(2,:) .* inMv2(55,:) - inMv1(3,:) .* inMv2(54,:) + inMv1(5,:) .* inMv2(49,:) - inMv1(6,:) .* inMv2(43,:) + inMv1(7,:) .* inMv2(33,:) - inMv1(8,:) .* inMv2(18,:);
+    outMv(245,:) = inMv1(1,:) .* inMv2(56,:) - inMv1(4,:) .* inMv2(53,:) + inMv1(5,:) .* inMv2(50,:) - inMv1(6,:) .* inMv2(44,:) + inMv1(7,:) .* inMv2(34,:) - inMv1(8,:) .* inMv2(19,:);
+    outMv(246,:) = inMv1(2,:) .* inMv2(56,:) - inMv1(4,:) .* inMv2(54,:) + inMv1(5,:) .* inMv2(51,:) - inMv1(6,:) .* inMv2(45,:) + inMv1(7,:) .* inMv2(35,:) - inMv1(8,:) .* inMv2(20,:);
+    outMv(247,:) = inMv1(3,:) .* inMv2(56,:) - inMv1(4,:) .* inMv2(55,:) + inMv1(5,:) .* inMv2(52,:) - inMv1(6,:) .* inMv2(46,:) + inMv1(7,:) .* inMv2(36,:) - inMv1(8,:) .* inMv2(21,:);
+end
