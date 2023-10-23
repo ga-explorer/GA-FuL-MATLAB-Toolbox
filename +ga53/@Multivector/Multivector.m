@@ -1,5 +1,4 @@
-
-% ------------------------------------------------
+% -----------------------------------------------------------
 %
 % The Geometric Algebra Fulcrum (GA-FuL) MATLAB Toolbox
 % 
@@ -331,7 +330,7 @@ classdef Multivector
                 inMv (1,1) ga53.Multivector
             end
         
-            switch inMv1.Grade
+            switch inMv.Grade
                 case 0
                     outMv = ga53.Multivector(0, inMv.SampleCount);
                     outMv.Data = negativeKv0Kv0(inMv.Data);
@@ -371,7 +370,7 @@ classdef Multivector
                 inMv (1,1) ga53.Multivector
             end
         
-            switch inMv1.Grade
+            switch inMv.Grade
                 case 0
                     outMv = ga53.Multivector(0, inMv.SampleCount);
                     outMv.Data = reverseKv0Kv0(inMv.Data);
@@ -411,7 +410,7 @@ classdef Multivector
                 inMv (1,1) ga53.Multivector
             end
         
-            switch inMv1.Grade
+            switch inMv.Grade
                 case 0
                     outMv = ga53.Multivector(0, inMv.SampleCount);
                     outMv.Data = gradeInvolutionKv0Kv0(inMv.Data);
@@ -451,7 +450,7 @@ classdef Multivector
                 inMv (1,1) ga53.Multivector
             end
         
-            switch inMv1.Grade
+            switch inMv.Grade
                 case 0
                     outMv = ga53.Multivector(0, inMv.SampleCount);
                     outMv.Data = cliffordConjugateKv0Kv0(inMv.Data);
@@ -491,7 +490,7 @@ classdef Multivector
                 inMv (1,1) ga53.Multivector
             end
         
-            switch inMv1.Grade
+            switch inMv.Grade
                 case 0
                     outMv = ga53.Multivector(0, inMv.SampleCount);
                     outMv.Data = conjugateKv0Kv0(inMv.Data);
@@ -531,7 +530,7 @@ classdef Multivector
                 inMv (1,1) ga53.Multivector
             end
         
-            switch inMv1.Grade
+            switch inMv.Grade
                 case 0
                     outMv = ga53.Multivector(8, inMv.SampleCount);
                     outMv.Data = dualKv0Kv8(inMv.Data);
@@ -571,7 +570,7 @@ classdef Multivector
                 inMv (1,1) ga53.Multivector
             end
         
-            switch inMv1.Grade
+            switch inMv.Grade
                 case 0
                     outMv = ga53.Multivector(8, inMv.SampleCount);
                     outMv.Data = unDualKv0Kv8(inMv.Data);
