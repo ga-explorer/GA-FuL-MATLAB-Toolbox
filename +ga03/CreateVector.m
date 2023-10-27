@@ -26,8 +26,7 @@ function outMv = CreateVector(scalarArray)
     size1 = size(scalarArray);
     
     if (length(size1) == 2 && size1(1) == 1 && size1(2) == 3)
-        outMv = ga03.Multivector(1, 1);
-        outMv.Data = double(scalarArray');
+        outMv = ga03.Multivector(1, double(scalarArray'));
         return;
     end
 
@@ -35,6 +34,5 @@ function outMv = CreateVector(scalarArray)
         error('Incorrect input size');
     end
     
-    outMv = ga03.Multivector(1, size(2));
-    outMv.Data = double(scalarArray);
+    outMv = ga03.Multivector(1, double(scalarArray));
 end

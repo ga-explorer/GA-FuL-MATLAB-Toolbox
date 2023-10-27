@@ -14,11 +14,14 @@ function outMv = cpKv3Kv3Kv0(inMv1, inMv2)
         inMv2 (10,:) double
     end
     
-    sampleCount = size(inMv1, 2);
+    sampleCount1 = size(inMv1, 2);
+    sampleCount2 = size(inMv2, 2);
     
-    if (size(inMv2, 2) ~= sampleCount)
-        error('Number of columns in both inputs must match');
+    if (sampleCount1 ~= sampleCount2 && sampleCount1 ~= 1 && sampleCount2 ~= 1)
+        error('Number of columns in both inputs must either match or equal 1');
     end
+    
+    sampleCount = max(sampleCount1, sampleCount2);
     
     outMv = zeros([1, sampleCount], 'double');
     

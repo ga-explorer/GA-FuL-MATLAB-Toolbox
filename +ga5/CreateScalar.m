@@ -21,6 +21,5 @@ function outMv = CreateScalar(scalarArray)
     %   This creates a multi-sample multivector containing 5 sampled scalars
     %       sSignal = ga3.CreateScalar([1.2, -1.4, 2.5, 0.25, -1.3]);
     
-    outMv = ga5.Multivector(0, size(scalarArray, 2));
-    outMv.Data = double(scalarArray);
+    outMv = ga5.Multivector(0, double(scalarArray));
 end
