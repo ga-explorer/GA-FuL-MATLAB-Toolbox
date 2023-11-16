@@ -249,19 +249,35 @@ classdef Multivector
         function outMv = mtimes(inMv, inScalar)
             arguments
                 inMv (1,1) ga05.Multivector
-                inScalar (1,1) double
+                inScalar (:,:) double
             end
         
-            outMv = ga05.Multivector(inMv.Grade, inMv.Data * inScalar);
+            inScalarSize = size(inScalar);
+        
+            if (inScalarSize(1) == 1 && inScalarSize(2) == 1)
+                outMv = ga05.Multivector(inMv.Grade, inMv.Data * inScalar);
+            elseif (inScalarSize(1) == 1 && inScalarSize(2) == inMv.SampleCount)
+                outMv = ga05.Multivector(inMv.Grade, inMv.Data .* repmat(inScalar, [inMv.ScalarCount, 1]));
+            else
+                error('Invalid size of scalar array inScalar');
+            end
         end
         
         function outMv = mrdivide(inMv, inScalar)
             arguments
                 inMv (1,1) ga05.Multivector
-                inScalar (1,1) double
+                inScalar (:,:) double
             end
         
-            outMv = ga05.Multivector(inMv.Grade, inMv.Data / inScalar);
+            inScalarSize = size(inScalar);
+        
+            if (inScalarSize(1) == 1 && inScalarSize(2) == 1)
+                outMv = ga05.Multivector(inMv.Grade, inMv.Data / inScalar);
+            elseif (inScalarSize(1) == 1 && inScalarSize(2) == inMv.SampleCount)
+                outMv = ga05.Multivector(inMv.Grade, inMv.Data ./ repmat(inScalar, [inMv.ScalarCount, 1]));
+            else
+                error('Invalid size of scalar array inScalar');
+            end
         end
         
         function outScalar = normSquared(inMv)
@@ -502,7 +518,7 @@ classdef Multivector
             end
         
             reverseMv = inMv.reverse();
-            outMv = reverseMv.mrdivide(inMv.sp(reverseMv).Data);
+            outMv = reverseMv.mrdivide(inMv.sp(reverseMv));
         end
         
         function outMv = pseudoInverse(inMv)
@@ -511,7 +527,7 @@ classdef Multivector
             end
         
             conjugateMv = inMv.conjugate();
-            outMv = conjugateMv.mrdivide(inMv.sp(conjugateMv).Data);
+            outMv = conjugateMv.mrdivide(inMv.sp(conjugateMv));
         end
         
         function outMv = plus(inMv1, inMv2)
@@ -664,127 +680,127 @@ classdef Multivector
                 case 0
                     switch inMv2.Grade
                         case 0
-                            outMv = ga05.Multivector(0, spKv0Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga05.Multivector(0, spKv0Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga05.Multivector(0, spKv0Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga05.Multivector(0, spKv0Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga05.Multivector(0, spKv0Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga05.Multivector(0, spKv0Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv5Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga05.Multivector(0, spKv0MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 1
                     switch inMv2.Grade
                         case 0
-                            outMv = ga05.Multivector(0, spKv1Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga05.Multivector(0, spKv1Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga05.Multivector(0, spKv1Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga05.Multivector(0, spKv1Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga05.Multivector(0, spKv1Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga05.Multivector(0, spKv1Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv5Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga05.Multivector(0, spKv1MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 2
                     switch inMv2.Grade
                         case 0
-                            outMv = ga05.Multivector(0, spKv2Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga05.Multivector(0, spKv2Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga05.Multivector(0, spKv2Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga05.Multivector(0, spKv2Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga05.Multivector(0, spKv2Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga05.Multivector(0, spKv2Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv5Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga05.Multivector(0, spKv2MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 3
                     switch inMv2.Grade
                         case 0
-                            outMv = ga05.Multivector(0, spKv3Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga05.Multivector(0, spKv3Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga05.Multivector(0, spKv3Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga05.Multivector(0, spKv3Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga05.Multivector(0, spKv3Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga05.Multivector(0, spKv3Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv5Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga05.Multivector(0, spKv3MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 4
                     switch inMv2.Grade
                         case 0
-                            outMv = ga05.Multivector(0, spKv4Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga05.Multivector(0, spKv4Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga05.Multivector(0, spKv4Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga05.Multivector(0, spKv4Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga05.Multivector(0, spKv4Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga05.Multivector(0, spKv4Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv5Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga05.Multivector(0, spKv4MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 5
                     switch inMv2.Grade
                         case 0
-                            outMv = ga05.Multivector(0, spKv5Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga05.Multivector(0, spKv5Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga05.Multivector(0, spKv5Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga05.Multivector(0, spKv5Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga05.Multivector(0, spKv5Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga05.Multivector(0, spKv5Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv5Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga05.Multivector(0, spKv5MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 otherwise
                     switch inMv2.Grade
                         case 0
-                            outMv = ga05.Multivector(0, spMvKv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga05.Multivector(0, spMvKv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga05.Multivector(0, spMvKv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga05.Multivector(0, spMvKv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga05.Multivector(0, spMvKv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga05.Multivector(0, spMvKv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv5Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga05.Multivector(0, spMvMvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvMvKv0(inMv1.Data, inMv2.Data);
                     end
                     
             end

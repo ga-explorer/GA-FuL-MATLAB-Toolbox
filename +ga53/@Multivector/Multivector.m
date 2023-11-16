@@ -318,19 +318,35 @@ classdef Multivector
         function outMv = mtimes(inMv, inScalar)
             arguments
                 inMv (1,1) ga53.Multivector
-                inScalar (1,1) double
+                inScalar (:,:) double
             end
         
-            outMv = ga53.Multivector(inMv.Grade, inMv.Data * inScalar);
+            inScalarSize = size(inScalar);
+        
+            if (inScalarSize(1) == 1 && inScalarSize(2) == 1)
+                outMv = ga53.Multivector(inMv.Grade, inMv.Data * inScalar);
+            elseif (inScalarSize(1) == 1 && inScalarSize(2) == inMv.SampleCount)
+                outMv = ga53.Multivector(inMv.Grade, inMv.Data .* repmat(inScalar, [inMv.ScalarCount, 1]));
+            else
+                error('Invalid size of scalar array inScalar');
+            end
         end
         
         function outMv = mrdivide(inMv, inScalar)
             arguments
                 inMv (1,1) ga53.Multivector
-                inScalar (1,1) double
+                inScalar (:,:) double
             end
         
-            outMv = ga53.Multivector(inMv.Grade, inMv.Data / inScalar);
+            inScalarSize = size(inScalar);
+        
+            if (inScalarSize(1) == 1 && inScalarSize(2) == 1)
+                outMv = ga53.Multivector(inMv.Grade, inMv.Data / inScalar);
+            elseif (inScalarSize(1) == 1 && inScalarSize(2) == inMv.SampleCount)
+                outMv = ga53.Multivector(inMv.Grade, inMv.Data ./ repmat(inScalar, [inMv.ScalarCount, 1]));
+            else
+                error('Invalid size of scalar array inScalar');
+            end
         end
         
         function outScalar = normSquared(inMv)
@@ -625,7 +641,7 @@ classdef Multivector
             end
         
             reverseMv = inMv.reverse();
-            outMv = reverseMv.mrdivide(inMv.sp(reverseMv).Data);
+            outMv = reverseMv.mrdivide(inMv.sp(reverseMv));
         end
         
         function outMv = pseudoInverse(inMv)
@@ -634,7 +650,7 @@ classdef Multivector
             end
         
             conjugateMv = inMv.conjugate();
-            outMv = conjugateMv.mrdivide(inMv.sp(conjugateMv).Data);
+            outMv = conjugateMv.mrdivide(inMv.sp(conjugateMv));
         end
         
         function outMv = plus(inMv1, inMv2)
@@ -811,241 +827,241 @@ classdef Multivector
                 case 0
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv0Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv0Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv0Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv0Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv0Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv0Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv0Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv0Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv0Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv0MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv0MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 1
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv1Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv1Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv1Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv1Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv1Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv1Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv1Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv1Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv1Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv1MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv1MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 2
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv2Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv2Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv2Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv2Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv2Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv2Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv2Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv2Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv2Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv2MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv2MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 3
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv3Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv3Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv3Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv3Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv3Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv3Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv3Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv3Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv3Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv3MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv3MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 4
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv4Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv4Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv4Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv4Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv4Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv4Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv4Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv4Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv4Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv4MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv4MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 5
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv5Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv5Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv5Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv5Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv5Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv5Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv5Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv5Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv5Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv5MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv5MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 6
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv6Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv6Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv6Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv6Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv6Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv6Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv6Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv6Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv6Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv6MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv6MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 7
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv7Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv7Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv7Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv7Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv7Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv7Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv7Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv7Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv7Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv7MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv7MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 case 8
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spKv8Kv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spKv8Kv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spKv8Kv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spKv8Kv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spKv8Kv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spKv8Kv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spKv8Kv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spKv8Kv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spKv8Kv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8Kv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spKv8MvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spKv8MvKv0(inMv1.Data, inMv2.Data);
                     end
                     
                 otherwise
                     switch inMv2.Grade
                         case 0
-                            outMv = ga53.Multivector(0, spMvKv0Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv0Kv0(inMv1.Data, inMv2.Data);
                         case 1
-                            outMv = ga53.Multivector(0, spMvKv1Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv1Kv0(inMv1.Data, inMv2.Data);
                         case 2
-                            outMv = ga53.Multivector(0, spMvKv2Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv2Kv0(inMv1.Data, inMv2.Data);
                         case 3
-                            outMv = ga53.Multivector(0, spMvKv3Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv3Kv0(inMv1.Data, inMv2.Data);
                         case 4
-                            outMv = ga53.Multivector(0, spMvKv4Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv4Kv0(inMv1.Data, inMv2.Data);
                         case 5
-                            outMv = ga53.Multivector(0, spMvKv5Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv5Kv0(inMv1.Data, inMv2.Data);
                         case 6
-                            outMv = ga53.Multivector(0, spMvKv6Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv6Kv0(inMv1.Data, inMv2.Data);
                         case 7
-                            outMv = ga53.Multivector(0, spMvKv7Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv7Kv0(inMv1.Data, inMv2.Data);
                         case 8
-                            outMv = ga53.Multivector(0, spMvKv8Kv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvKv8Kv0(inMv1.Data, inMv2.Data);
                         otherwise
-                            outMv = ga53.Multivector(0, spMvMvKv0(inMv1.Data, inMv2.Data));
+                            outMv = spMvMvKv0(inMv1.Data, inMv2.Data);
                     end
                     
             end

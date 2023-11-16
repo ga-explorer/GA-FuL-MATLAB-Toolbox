@@ -1,11 +1,11 @@
 %% Constructing multivectors
 % Start by creating two 3-d Euclidean GA scalars and two vectors:
 
-a = ga3.CreateScalar(3.5);
-b = ga3.CreateScalar(-1.25);
+a = ga3.EncodeScalar(3.5);
+b = ga3.EncodeScalar(-1.25);
 
-v = ga3.CreateVector([1.2, -2.4, 1.3]);
-w = ga3.CreateVector([-3.1, -1.6, 2.23]);
+v = ga3.EncodeVector([1.2, -2.4, 1.3]);
+w = ga3.EncodeVector([-3.1, -1.6, 2.23]);
 %% 
 % Any multivector object has several important properties:
 
@@ -91,9 +91,9 @@ v.gp(w).getLaTeX()
 
 v.op(w).getLaTeX()
 %% 
-% The scalar product:
+% The scalar product (returns doubles, not multivectors):
 
-v.sp(w).getLaTeX()
+v.sp(w)
 %% 
 % The left-contraction product:
 
