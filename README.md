@@ -1,6 +1,6 @@
 # GA-FuL-MATLAB-Toolbox
 
-A MATLAB toolbox for interfacing with the extensive Geometric Algebra Fulcrum Library (GA-FuL) on Windows
+A MATLAB toolbox for interfacing with the extensive [Geometric Algebra Fulcrum Library (GA-FuL)](https://github.com/ga-explorer/GeometricAlgebraFulcrumLib) on Windows
 
 ## Installation
 
