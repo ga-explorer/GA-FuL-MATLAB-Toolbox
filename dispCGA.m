@@ -11,7 +11,7 @@ function dispCGA(x, msg)
         fprintf('%s: ', msg);
 
         % Check if x is a .NET XGaFloat64Multivector object
-        if isa(x, 'GeometricAlgebraFulcrumLib.Algebra.GeometricAlgebra.Float64.Multivectors.XGaFloat64Multivector')
+        if isa(x, 'GeometricAlgebraFulcrumLib.Algebra.GeometricAlgebra.Float64.Multivectors.XGaFloat64Multivector') | isa(x, 'GeometricAlgebraFulcrumLib.Modeling.Geometry.CGa.Float64.Blades.CGaFloat64Blade')
             try
                 str = char(GeometricAlgebraFulcrumLib.Modeling.Utilities.Text.TextUtils.CGaToText(x));
                 fprintf('%s\n', str);

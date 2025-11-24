@@ -12,7 +12,7 @@ a3 = 425.0;
 d4 = 425.0;
 
 % CGA null vector of the desired position of end-effector
-cgaP = cgaGeo.Encode.IpnsRound.Point(561.8479, 262.7685, 455.0104);
+cgaP = cgaGeo.EncodeIpnsRound.Point(561.8479, 262.7685, 455.0104);
 
 % point at the origin
 cgaP0 = eo;
