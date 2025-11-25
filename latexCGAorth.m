@@ -11,7 +11,7 @@ function latexCGAorth(x, msg)
         fprintf('%s: ', msg);
 
         % Check if x is a .NET XGaFloat64Multivector object
-        if isa(x, 'GeometricAlgebraFulcrumLib.Algebra.GeometricAlgebra.Float64.Multivectors.XGaFloat64Multivector') | isa(x, 'GeometricAlgebraFulcrumLib.Modeling.Geometry.CGa.Float64.Blades.CGaFloat64Blade')
+        if isa(x, 'GeometricAlgebraFulcrumLib.Algebra.GeometricAlgebra.Float64.Multivectors.XGaFloat64Multivector') | isa(x, 'GeometricAlgebraFulcrumLib.Modeling.Geometry.CGa.Float64.Blades.CGaFloat64Blade') | isa(x, 'GeometricAlgebraFulcrumLib.Modeling.Geometry.CGa.Float64.Versors.CGaFloat64Versor')
             try
                 str = char(GeometricAlgebraFulcrumLib.Modeling.Utilities.Text.TextUtils.CGaOrthoToLaTeX(x));
                 fprintf('%s\n', str);
@@ -25,7 +25,7 @@ function latexCGAorth(x, msg)
         end
     else
         % Check if x is a .NET XGaFloat64Multivector object
-        if isa(x, 'GeometricAlgebraFulcrumLib.Algebra.GeometricAlgebra.Float64.Multivectors.XGaFloat64Multivector')
+        if isa(x, 'GeometricAlgebraFulcrumLib.Algebra.GeometricAlgebra.Float64.Multivectors.XGaFloat64Multivector') | isa(x, 'GeometricAlgebraFulcrumLib.Modeling.Geometry.CGa.Float64.Versors.CGaFloat64Versor')
             try
                 str = char(GeometricAlgebraFulcrumLib.Modeling.Utilities.Text.TextUtils.CGaOrthoToLaTeX(x));
                 fprintf('%s\n', str);
