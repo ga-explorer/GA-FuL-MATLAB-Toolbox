@@ -4,7 +4,7 @@ A MATLAB toolbox for interfacing with the extensive [Geometric Algebra Fulcrum L
 
 ## Installation
 
-You need a PC or virtual machine with a **64-bits version of Windows 10 or later** and **MATLAB 2022b or later** for the toolbox to work properly. Make sure you have the **`MATLAB compiler` and `MATLAB compiler SDK` components** installed with your MATLAB installation. It is also **recommended to install** the latest version of [.NET Core 8 SDK for Windows x64](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) before installing the toolbox.
+You need a PC or virtual machine with a **64-bits version of Windows 10 or later** and **MATLAB 2022b or later** for the toolbox to work properly. Make sure you have the **[`MATLAB compiler`](https://www.mathworks.com/products/compiler.html)** and **[`MATLAB compiler SDK`](https://www.mathworks.com/products/matlab-compiler-sdk.html)** components installed with your MATLAB installation. It is also **recommended to install** the latest version of [.NET Core 8 SDK for Windows x64](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) before installing the toolbox.
 
 To install the toolbox:
 
