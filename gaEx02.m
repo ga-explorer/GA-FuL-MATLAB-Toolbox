@@ -27,6 +27,8 @@ disp2(' ');
 disp2('Intersection circle decoded data:');
 disp2(circle.CenterToVector3D(), '   center');
 disp2(circle.NormalDirectionToVector3D(), '   normal');
+disp2(double(circle.DirectionToColumnsArray2D()), '   direction bivector');
+disp2(double(circle.NormalDirectionToColumnsArray2D()), '   normal');
 disp2(sqrt(circle.RadiusSquared), '   squared radius');
 disp2(circle.Weight, '   weight');
 
@@ -115,3 +117,4 @@ disp2('PGA Transformations:');
 dispCGA(cgaGeo.EncodePGa.Translation([1,2,3]), '   translation');
 dispCGA(cgaGeo.EncodePGa.Rotation3D(pi / 3, [1,2,3], [1,1,1]), '   rotation from (radians, point, direction)');
 disp(' ')
+

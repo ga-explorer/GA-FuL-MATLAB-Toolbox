@@ -25,7 +25,8 @@ function gafulLoadAssemblies(asmNames)
 
     % --- Load .NET runtime (MATLAB R2023a+ with .NET Core) ---
     try
-        dotnetenv("nethost", "auto");
+        %dotnetenv("nethost", "auto");
+        dotnetenv("core");
     catch
         % Ignore for MATLAB versions that do not require dotnetenv
     end
